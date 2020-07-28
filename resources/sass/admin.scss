@@ -1,0 +1,16 @@
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.table{
+    .table__btn{
+        width: 1%;
+    }
+
+    td{
+        vertical-align: middle;
+    }
+}
