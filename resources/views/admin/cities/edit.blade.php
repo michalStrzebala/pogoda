@@ -23,6 +23,14 @@
                         <label for="city_name">Nazwa miasta:</label>
                         <input type="text" class="form-control" name="city_name" value="" placeholder="{{ $city->name }}"/>
                     </div>
+                    <div class="form-group">
+                        <label for="city_name">Kod pocztowy:</label>
+                        <input type="text" class="form-control" name="city_zip" value="" placeholder="{{ $city->zip }}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="city_name">Kod państwa:</label>
+                        <input type="text" class="form-control" name="city_country" value="" placeholder="{{ $city->country_code }}"/>
+                    </div>
                     <button type="submit" class="btn btn-primary">Zapisz</button>
                 </form>
             </div>

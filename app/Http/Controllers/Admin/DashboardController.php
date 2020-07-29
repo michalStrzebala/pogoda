@@ -11,7 +11,7 @@ class DashboardController extends Controller
     public function index()
     {
 
-        $city = WeatherController::getSingleCityWeather('Zwoleń');
+        $city = WeatherController::getSingleCityWeather('26-700', 'pl');
 
         print_r($city);
         die();

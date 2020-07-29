@@ -16,6 +16,14 @@ class CreateCitiesTable extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('zip');
+            $table->string('country_code')->lenght(2);
+            $table->float('temperature', 4, 2);
+            $table->integer('pressure');
+            $table->integer('humidity');
+            $table->float('wind_speed', 4, 2);
+            $table->integer('clouds');
+            $table->string('icon_code');
             $table->timestamps();
         });
     }

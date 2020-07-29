@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\WeatherController;
 use Illuminate\Http\Request;
+// use Illuminate\Http\RedirectResponse
 use App\City;
 
 class CityController extends Controller
@@ -38,9 +40,34 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
+        $cityWeather = WeatherController::getSingleCityWeather($request->city_zip, $request->city_country);
+
+        if( ! is_array( $cityWeather ) ){
+            return redirect()->back()->withErrors([ $cityWeather ]);
+        }
+
+        if( $cityWeather['name'] != $request->city_name ){
+            return redirect()->back()->withErrors([ 'Niepoprawna nazwa miasta dla podanego kodu pocztowego' ]);
+        }
+
+        // print_r(City::where('name', $request->city_name)->orwhere('zip', $request->city_zip)->get());
+        // die();
+
+        if( City::where('name', $request->city_name)->orwhere('zip', $request->city_zip)->first() !== NULL ){
+            return redirect()->back()->withErrors([ 'Takie miasto już istnieje' ]);
+        }
 
         $city = new City;
         $city->name = $request->city_name;
+        $city->zip = $request->city_zip;
+        $city->country_code = $request->city_country;
+        $city->temperature = $cityWeather['main']['temp'];
+        $city->pressure = $cityWeather['main']['pressure'];
+        $city->humidity = $cityWeather['main']['humidity'];
+        $city->wind_speed = $cityWeather['wind']['speed'];
+        $city->clouds = $cityWeather['clouds']['all'];
+        $city->icon_code = $cityWeather['weather']['0']['icon'];
+
         $city->save();
 
         return redirect()->route('miasta.index');

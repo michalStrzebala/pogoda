@@ -9,10 +9,33 @@ use Illuminate\Support\Facades\Http;
 class WeatherController extends Controller
 {
     
-    public static function getSingleCityWeather( $city )
+    public static function getSingleCityWeather( $zip, $countryCode )
     {
-        $response = Http::get('api.openweathermap.org/data/2.5/weather?q=' . $city . '&units=metric&appid=45602048fa3fe1a78e3792008dc4a439')->json();
-        return $response;
+        $response = Http::get('api.openweathermap.org/data/2.5/weather?zip=' . $zip . ',' . $countryCode . '&units=metric&appid=c53dd2fdbbc3c86a9613a4976dea10ac')->json();
+
+        // print_r($response);
+        // die();
+
+        if( empty( self::returnErrorMessage($response) ) ){
+            return $response;
+        }else{
+            return self::returnErrorMessage($response);
+        }
+    }
+
+    private static function returnErrorMessage( $response ){
+        
+        if( $response['cod'] != 200 ){
+            
+            if( $response['message'] == 'city not found' ){
+                return 'Nie ma takiego miasta';
+            }elseif( $response['message'] == 'invalid zip code' ){
+                return  'Niewłaściwy kod pocztowy';
+            }else{
+                return 'Błąd połącznia. Spróbuj ponownie później';
+            }
+
+        }
     }
 
 }

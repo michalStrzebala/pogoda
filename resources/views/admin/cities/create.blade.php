@@ -22,6 +22,16 @@
                         <label for="city_name">Nazwa miasta:</label>
                         <input type="text" class="form-control" name="city_name" value="" />
                     </div>
+                    <div class="form-group">
+                        @csrf
+                        <label for="city_zip">Kod pocztowy:</label>
+                        <input type="text" class="form-control" name="city_zip" value="" />
+                    </div>
+                    <div class="form-group">
+                        @csrf
+                        <label for="city_country">Kod państwa:</label>
+                        <input type="text" class="form-control" name="city_country" value="" />
+                    </div>
                     <button type="submit" class="btn btn-primary">Dodaj</button>
                 </form>
             </div>
