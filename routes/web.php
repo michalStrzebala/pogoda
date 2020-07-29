@@ -23,6 +23,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('/admin/miasta', 'CityController');
+Route::get('/admin', 'Admin\DashboardController@index');
+
+Route::resource('/admin/miasta', 'Admin\CityController');
 
 // Route::get('/home', 'HomeController@index')->name('home');

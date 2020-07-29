@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\City;
 
@@ -16,9 +17,6 @@ class CityController extends Controller
     {
         $cities = City::all();
 
-        // print_r($cities);
-        // die();
-
         return view('admin.cities.index')->with(['cities' => $cities]);
     }
 
@@ -29,7 +27,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.cities.create');
     }
 
     /**
@@ -40,7 +38,12 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $city = new City;
+        $city->name = $request->city_name;
+        $city->save();
+
+        return redirect()->route('miasta.index');
     }
 
     /**
