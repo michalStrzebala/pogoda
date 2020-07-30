@@ -11,7 +11,7 @@ class WeatherController extends Controller
     
     public static function getSingleCityWeather( $zip, $countryCode )
     {
-        $response = Http::get('api.openweathermap.org/data/2.5/weather?zip=' . $zip . ',' . $countryCode . '&units=metric&appid=c53dd2fdbbc3c86a9613a4976dea10ac')->json();
+        $response = Http::get('api.openweathermap.org/data/2.5/weather?zip=' . $zip . ',' . $countryCode . '&units=metric&appid=' . config('services.openweather.key') . '')->json();
 
         // print_r($response);
         // die();
