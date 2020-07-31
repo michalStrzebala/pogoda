@@ -11,9 +11,12 @@
             @endif
         </div>
     </div>
-    <div class="row pb-3 pt-3">
-        <div class="col-12">
+    <div class="row pb-3 pt-3 justify-content-between">
+        <div class="col-6">
             <a class="btn btn-primary" href="{{ route('miasta.create') }}">Dodaj miasto</a>
+        </div>
+        <div class="col-6 text-right">
+            <a class="btn btn-success" href="{{ route('home') }}">Zobacz stronę</a>
         </div>
     </div>
     <div class="row">
@@ -23,12 +26,14 @@
                     <tr>
                         <td>ID</td>
                         <td>Miasto</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($cities as $city)
                         <tr>
-                            <td><a href="{{ route('miasta.show', [ 'miastum' => $city->id ]) }}">{{ $city->id }}</a></td>
+                            <td>{{ $city->id }}</td>
                             <td>{{ $city->name }}</td>
                             <td class="table__btn"><a href="{{ route('miasta.edit', [ 'miastum' => $city->id ]) }}" class="btn btn-primary">Edit</a></td>
                             <td class="table__btn">

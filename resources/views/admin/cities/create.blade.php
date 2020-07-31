@@ -15,6 +15,11 @@
                     </div>
                 </div>
             @endif
+
+            <div class="col-12 pb-3 pt-3">
+                <a class="btn btn-secondary" href="{{ route('miasta.index') }}">Lista miast</a>
+            </div>
+
             <div class="col-12">
                 <form method="post" action="{{ route('miasta.store') }}">
                     <div class="form-group">
